@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // var json = require("./node_modules/cldr-misc-full/main/af/delimiters.json");
 
-// var data = require('multi-json?cwd=cldr-misc-full/main&glob=**/delimiters.json!./irrelevant.whatever');
-var data = require('multi-json?cwd=node_modules/cldr-misc-full/main&glob=**/*.json!./irrelevant.whatever');
+var data = require('multi-json?cwd=node_modules/cldr-misc-full/main&glob=**/*.json!./irrelevant.placeholder');
 // import result from './jsonData.js';
 
 
