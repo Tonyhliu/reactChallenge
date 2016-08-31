@@ -1,8 +1,9 @@
-'use strict';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+// var json = require("./node_modules/cldr-misc-full/main/af/delimiters.json");
 
+// var data = require('multi-json?cwd=cldr-misc-full/main&glob=**/delimiters.json!./irrelevant.whatever');
+var data = require('multi-json?cwd=node_modules/cldr-misc-full/main&glob=**/*.json!./irrelevant.whatever');
 // import result from './jsonData.js';
 
 
@@ -18,10 +19,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
+    // alert(json)
   }
 
   _handleSubmit() {
+    // alert(json)
+    // console.log(json);
+    console.log(data);
 
     // console.log(json.main);
     // var moveFrom = "./node_modules/cldr-misc-full/main/af/delimiters.json";
