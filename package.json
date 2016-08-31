@@ -1,0 +1,29 @@
+{
+  "name": "reactChallenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.2.0",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.1.18",
+    "flux": "^2.1.1",
+    "fs": "0.0.1-security",
+    "json-loader": "^0.5.4",
+    "path": "^0.12.7",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "redux": "^3.5.2",
+    "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.4"
+  }
+}
