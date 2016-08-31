@@ -34,10 +34,7 @@ class App extends React.Component {
       matches[curr] = data[prop].delimiters.main[curr].delimiters[property];
     }
 
-    this.setState({ results: [matches] }, function() {
-      console.log(this.state);
-    });
-    // console.log(this.state.results);
+    this.setState({ results: [matches] });
 
     // console.log(json.main);
     // var moveFrom = "./node_modules/cldr-misc-full/main/af/delimiters.json";
@@ -58,12 +55,19 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.results);
     let searchResults;
-    if (this.state.results !== []) {
-      searchResults = <div>TESTING</div>
+    if (this.state.results.length === 0) {
+      searchResults = <div>placeholder</div>
     } else {
-      searchResults = this.state.results
+      searchResults = <ul>
+        {
+          this.state.results[0].map(result => {
+            <li>
+              {result}
+            </li>
+          })
+        }
+      </ul>
     }
 
     return(
