@@ -9,9 +9,12 @@ class App extends React.Component {
     super();
     this.state = {
       query: "",
-      data: {},
-      results: []
+      results: [],
+      data: data
     };
+
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleInput = this._handleInput.bind(this);
   }
 
   _handleInput(e) {
@@ -19,52 +22,22 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
-    // this.resultsListener
-    // this.state = { data: data, results: [] }
-    // let a = this.state.data
-    // let results = []
-    // for (var prop in a) {
-    //   // results.push({prop: ""})
-    //   // console.log(prop);
-    //   // console.log(a[prop].delimiters);
-    //   let curr = prop
-    //   console.log(a[prop].delimiters.main[curr].delimiters);
-    //   // console.log(a[prop].delimiters.main.prop.delimiters);
-    //   // console.log(a[prop][delimiters]);
-    // }
-
-
-    // let keys = Array.prototype.slice.apply(this, Object.keys(a));
-    // console.log(keys);
-    // console.log(keys[0]);
-    // console.log(a.keys[0]);
-    // for (let i = 0; i < keys.length; i++) {
-    //   console.log(a.keys[i]);
-    // }
+    this.setState({ data: data })
   }
 
   _handleSubmit() {
-
-    let data = this.state.data
+    // let data = this.state.data
     let property = this.state.query
     let matches = []
     for (var prop in data) {
       let curr = prop
-      // results[curr] = data[prop].delimiters.main[curr].delimiters;
       matches[curr] = data[prop].delimiters.main[curr].delimiters[property];
     }
-    console.log(matches);
-    // console.log(this.state);
-    // debugger
-    this.setState({ results: matches })
-    console.log(this.state);
 
-    // console.log(this.state.query);
-    // console.log(results);
-    // alert(json)
-    // console.log(json);
-    // console.log(data);
+    this.setState({ results: [matches] }, function() {
+      console.log(this.state);
+    });
+    // console.log(this.state.results);
 
     // console.log(json.main);
     // var moveFrom = "./node_modules/cldr-misc-full/main/af/delimiters.json";
@@ -85,21 +58,33 @@ class App extends React.Component {
   }
 
   render() {
+    // console.log(this.state.results);
+    let searchResults;
+    if (this.state.results !== []) {
+      searchResults = <div>TESTING</div>
+    } else {
+      searchResults = this.state.results
+    }
+
     return(
       <div>
         <div className="input-container">
           <input type="search"
                   placeholder="Type in a property name..."
                   className="input-search-bar"
-                  onInput={this._handleInput.bind(this)}>
+                  value={this.state.query}
+                  onInput={this._handleInput}>
           </input>
           <input type="submit"
                   className="submit-button"
-                  onClick={this._handleSubmit.bind(this)}>
+                  onClick={this._handleSubmit}>
 
           </input>
         </div>
         <div className="results-index">
+          <span>
+            {searchResults}
+          </span>
         </div>
       </div>
     )
