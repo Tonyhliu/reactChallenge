@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Result from './result'
 var data = require('multi-json?cwd=node_modules/cldr-misc-full/main&glob=**/*.json!./irrelevant.placeholder');
 
 
@@ -31,9 +32,11 @@ class App extends React.Component {
     let matches = []
     for (var prop in data) {
       let curr = prop
-      matches[curr] = data[prop].delimiters.main[curr].delimiters[property];
+      matches.push([curr, data[prop].delimiters.main[curr].delimiters[property]]);
     }
 
+    // console.log(matches);
+    // console.log(typeof matches);
     this.setState({ results: [matches] });
 
     // console.log(json.main);
@@ -59,17 +62,12 @@ class App extends React.Component {
     if (this.state.results.length === 0) {
       searchResults = <div>placeholder</div>
     } else {
-      searchResults = <ul>
-        {
-          this.state.results[0].map(result => {
-            <li>
-              {result}
-            </li>
-          })
-        }
-      </ul>
+      searchResults = this.state.results[0].map( (resultArr) => (
+        <Result name={resultArr[0]}
+                value={resultArr[1]}
+                key={resultArr}/>
+      ));
     }
-
     return(
       <div>
         <div className="input-container">
@@ -86,9 +84,9 @@ class App extends React.Component {
           </input>
         </div>
         <div className="results-index">
-          <span>
+          <div>
             {searchResults}
-          </span>
+          </div>
         </div>
       </div>
     )

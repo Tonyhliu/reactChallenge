@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: "./app.jsx",
+  entry: "./App.jsx",
 
   output: {
     path: "javascripts",
