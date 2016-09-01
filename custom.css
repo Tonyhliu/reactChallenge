@@ -61,9 +61,34 @@
   font-size: 12px;
 }
 
+.qs {
+  background-color: #ac2828;
+}
+.qs:hover{
+  background-color: #8f2323;
+}
+.qe {
+  background-color: #4747c4;
+}
+.qe:hover {
+  background-color: #383872;
+}
+.aqs {
+  background-color: #e1d655;
+}
+.aqs:hover {
+  background-color: #a8a14b;
+}
+.aqe {
+  background-color: #a435a4;
+}
+.aqe:hover {
+  background-color: #582d58;
+}
+
 .results-value:hover {
   background-color: darkgreen;
-  cursor: green;
+  cursor: pointer;
 }
 
 .results {

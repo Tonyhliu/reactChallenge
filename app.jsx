@@ -49,9 +49,9 @@ class App extends React.Component {
     this.setState({ data: data })
   }
 
-  _handleSubmit() {
+  _handleSubmit(e) {
     let validProps = ['quotationStart', 'quotationEnd', 'alternateQuotationStart', 'alternateQuotationEnd']
-    let property = this.state.query
+    let property = e.target.innerHTML
     if (!validProps.includes(property)) {
       this.setState({invalid: true});
     } else {
@@ -106,21 +106,33 @@ class App extends React.Component {
       </div>
     }
 
+    // <input type="submit"
+    //   className="submit-button"
+    //   onClick={this._handleSubmit}>
+
+    // <input type="search"
+    //   placeholder="Type in a property name..."
+    //   className="input-search-bar"
+    //   value={this.state.query}
+    //   onInput={this._handleInput}>
+    // </input>
+    // </input>
+
     return(
       <div className="main">
         <h2>Look up attributes from the CLDR!</h2>
         <div className="input-container">
-          <input type="search"
-                  placeholder="Type in a property name..."
-                  className="input-search-bar"
-                  value={this.state.query}
-                  onInput={this._handleInput}>
-          </input>
-          <input type="submit"
-                  className="submit-button"
-                  onClick={this._handleSubmit}>
 
-          </input>
+            <div onClick={this._handleSubmit}
+              className="sort-button qs">quotationStart
+            </div>
+            <div onClick={this._handleSubmit}
+              className="sort-button qe">quotationEnd</div>
+            <div onClick={this._handleSubmit}
+              className="sort-button aqs">alternateQuotationStart</div>
+            <div onClick={this._handleSubmit}
+              className="sort-button aqe">alternateQuotationEnd</div>
+
         </div>
 
         <div className="results-table">
