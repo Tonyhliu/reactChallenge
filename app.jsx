@@ -56,16 +56,18 @@ class App extends React.Component {
       matches.push([curr, data[prop].delimiters.main[curr].delimiters[property]]);
     }
 
-    this.setState({ results: [matches], sort: false });
+    this.setState({ results: [matches], sort: false, query: property });
   }
 
   render() {
-    let searchResults, sortResults, values;
+    let searchResults, sortResults, values, currentProp;
     let sort = false;
     if (this.state.results.length === 0) {
       searchResults = <div></div>
       sortResults = <div></div>
+      currentProp = <div></div>
     } else if (!this.state.sort) {
+      currentProp = <h3>Current property: {this.state.query}</h3>
       sortResults = <div onClick={this._handleSort}
                         className="sort-button">Sort By Symbols</div>
 
@@ -77,7 +79,7 @@ class App extends React.Component {
           key={resultArr}/>
       ));
     } else if (this.state.sort) {
-
+      currentProp = <h3>Current property: {this.state.query}</h3>
       sort = true;
       searchResults = this.state.results[0].map( (resultArr) => (
         <SortResult name={resultArr[0]}
@@ -92,7 +94,7 @@ class App extends React.Component {
 
     if (sort) {
       values = <div>
-        <h3>Click on one of the symbols below to see the countries</h3>
+        <h3>Click on one of the symbols below to see the countries that share the property</h3>
         <div className="search-results-ul">
             {searchResults}
         </div>
@@ -123,6 +125,7 @@ class App extends React.Component {
         <div className="results-table">
           <div>
             <div>
+              {currentProp}
               <div>
                 {sortResults}
               </div>
