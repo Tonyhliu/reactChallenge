@@ -41,7 +41,6 @@ class App extends React.Component {
       matches.push([obj[mark], mark])
     })
 
-    // debugger
     this.setState({ results: [matches] });
   }
 
@@ -56,14 +55,14 @@ class App extends React.Component {
     if (!validProps.includes(property)) {
       this.setState({invalid: true});
     } else {
-      this.setState({invalid: false});
+      // this.setState({invalid: false});
       let matches = [];
       for (var prop in data) {
         let curr = prop;
         matches.push([curr, data[prop].delimiters.main[curr].delimiters[property]]);
       }
 
-      this.setState({ results: [matches] });
+      this.setState({ results: [matches], invalid: false });
     }
 
     // console.log(json.main);
@@ -87,37 +86,27 @@ class App extends React.Component {
   render() {
     let searchResults, sortResults;
     if (this.state.results.length === 0) {
-      searchResults = <tr></tr>
-      sortResults = <th></th>
+      searchResults = <div></div>
+      sortResults = <div></div>
     } else {
-      sortResults = <th onClick={this._handleSort}>Sort</th>
+      sortResults = <div onClick={this._handleSort}>Sort</div>
+
+      let that = this
+      let countries;
       // debugger
-      if (this.state.results instanceof Array) {
-        this.state.results
-      }
-
-      // searchResults = this.state.results[0].map( (resultArr) => (
-      //   <Result name={resultArr[0]}
-      //           value={resultArr[1]}
-      //           key={resultArr}/>
-      // ));
-      debugger
-      searchResults = while (this.state.results instanceof Array) {
-
-      }
-      // this.state.results[0].map( (resultArr) => (
-      //   <Result name={resultArr[0]}
-      //           value={resultArr[1]}
-      //           key={resultArr}/>
-      // ));
+      searchResults = this.state.results[0].map( (resultArr) => (
+        <Result name={resultArr[0]}
+          value={resultArr[1]}
+          key={resultArr}/>
+      ));
     }
 
     if (this.state.invalid) {
-      searchResults = <tr>Invalid properties. Try "quotationStart", "quotationEnd", "alternateQuotationStart", "alternateQuotationEnd"</tr>
+      searchResults = <div>Invalid properties. Try "quotationStart", "quotationEnd", "alternateQuotationStart", "alternateQuotationEnd"</div>
     };
 
     return(
-      <div>
+      <div className="main">
         <div className="input-container">
           <input type="search"
                   placeholder="Type in a property name..."
@@ -133,16 +122,16 @@ class App extends React.Component {
         </div>
 
         <div className="results-table">
-          <table>
-            <thead>
-              <tr>
+          <div>
+            <div>
+              <div>
                 {sortResults}
-              </tr>
-            </thead>
-            <tbody>
+              </div>
+            </div>
+            <ul>
                 {searchResults}
-            </tbody>
-          </table>
+            </ul>
+          </div>
         </div>
 
       </div>

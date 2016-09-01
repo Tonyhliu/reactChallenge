@@ -1,4 +1,9 @@
+.main {
+  height: 100vh;
+}
+
 .input-search-bar {
   display: block;
   width: 400px;
+  height: 200px;
 }
