@@ -13,7 +13,6 @@ class App extends React.Component {
       query: "",
       results: [],
       data: data,
-      invalid: false,
       sort: false
     };
 
@@ -50,19 +49,14 @@ class App extends React.Component {
   }
 
   _handleSubmit(e) {
-    let validProps = ['quotationStart', 'quotationEnd', 'alternateQuotationStart', 'alternateQuotationEnd']
     let property = e.target.innerHTML
-    if (!validProps.includes(property)) {
-      this.setState({invalid: true});
-    } else {
-      let matches = [];
-      for (var prop in data) {
-        let curr = prop;
-        matches.push([curr, data[prop].delimiters.main[curr].delimiters[property]]);
-      }
-
-      this.setState({ results: [matches], invalid: false, sort: false });
+    let matches = [];
+    for (var prop in data) {
+      let curr = prop;
+      matches.push([curr, data[prop].delimiters.main[curr].delimiters[property]]);
     }
+
+    this.setState({ results: [matches], sort: false });
   }
 
   render() {
@@ -97,8 +91,11 @@ class App extends React.Component {
     };
 
     if (sort) {
-      values = <div className="search-results-ul">
-        {searchResults}
+      values = <div>
+        <h3>Click on one of the symbols below to see the countries</h3>
+        <div className="search-results-ul">
+            {searchResults}
+        </div>
       </div>
     } else {
       values = <div className="search-results-div">
@@ -106,21 +103,9 @@ class App extends React.Component {
       </div>
     }
 
-    // <input type="submit"
-    //   className="submit-button"
-    //   onClick={this._handleSubmit}>
-
-    // <input type="search"
-    //   placeholder="Type in a property name..."
-    //   className="input-search-bar"
-    //   value={this.state.query}
-    //   onInput={this._handleInput}>
-    // </input>
-    // </input>
-
     return(
       <div className="main">
-        <h2>Look up attributes from the CLDR!</h2>
+        <h2>Look up attributes from the Common Locale Data Repository (CLDR)!</h2>
         <div className="input-container">
 
             <div onClick={this._handleSubmit}

@@ -12,6 +12,7 @@
   position: absolute;
   left: 3em;
   height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
 .country-names {
@@ -36,6 +37,7 @@
   text-align: center;
   display: inline-block;
   font-size: 12px;
+  margin-right: 5px;
 }
 
 .sort-button:hover {
@@ -59,6 +61,7 @@
   text-align: center;
   display: inline-block;
   font-size: 12px;
+  margin-bottom: 5px;
 }
 
 .qs {
@@ -68,22 +71,22 @@
   background-color: #8f2323;
 }
 .qe {
-  background-color: #4747c4;
+  background-color: #4773c4;
 }
 .qe:hover {
-  background-color: #383872;
+  background-color: #446195;
 }
 .aqs {
-  background-color: #e1d655;
+  background-color: #ddd143;
 }
 .aqs:hover {
   background-color: #a8a14b;
 }
 .aqe {
-  background-color: #a435a4;
+  background-color: #9b27b8;
 }
 .aqe:hover {
-  background-color: #582d58;
+  background-color: #7a337a;
 }
 
 .results-value:hover {
@@ -97,6 +100,10 @@
 
 .search-results-div {
   padding-top: 15px;
+}
+
+.search-results-symbols {
+  display: block;
 }
 
 .input-container input[type=search] {
