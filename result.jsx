@@ -1,26 +1,17 @@
 import React from 'react';
 
-// const Result = ({name, value}) => {
-//
-//   return(
-//     <tr className="result-data">
-//       <td className="result-td">
-//         {name} = {value}
-//       </td>
-//     </tr>
-//   );
-// };
-
 class Result extends React.Component {
   constructor() {
     super();
   };
 
   render() {
-    let name = <li className="country-names">
+    let name = <li className="country-name">
                   {this.props.name}
                 </li>
-    let value;
+    // let value = <li className="result-value">
+    //               {this.props.value}
+    //             </li>
     if (this.props.name instanceof Array) {
       name = this.props.name.map(country => {
         return <li key={country}
