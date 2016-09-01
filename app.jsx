@@ -11,15 +11,38 @@ class App extends React.Component {
     this.state = {
       query: "",
       results: [],
-      data: data
+      data: data,
+      invalid: false
     };
 
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleInput = this._handleInput.bind(this);
+    this._handleSort = this._handleSort.bind(this);
   }
 
   _handleInput(e) {
     this.setState({ query: e.target.value });
+  }
+
+  _handleSort() {
+    let arr = this.state.results[0];
+    // [[name, ""], [name, ""]]
+    let obj = {}
+    let matches = []
+    arr.forEach(arr => {
+      if (arr[1] in obj) {
+        obj[arr[1]].push(arr[0])
+      } else {
+        obj[arr[1]] = [arr[0]];
+      }
+    });
+
+    Object.keys(obj).forEach(mark => {
+      matches.push([obj[mark], mark])
+    })
+
+    // debugger
+    this.setState({ results: [matches] });
   }
 
   componentDidMount() {
@@ -28,16 +51,20 @@ class App extends React.Component {
 
   _handleSubmit() {
     // let data = this.state.data
+    let validProps = ['quotationStart', 'quotationEnd', 'alternateQuotationStart', 'alternateQuotationEnd']
     let property = this.state.query
-    let matches = []
-    for (var prop in data) {
-      let curr = prop
-      matches.push([curr, data[prop].delimiters.main[curr].delimiters[property]]);
-    }
+    if (!validProps.includes(property)) {
+      this.setState({invalid: true});
+    } else {
+      this.setState({invalid: false});
+      let matches = [];
+      for (var prop in data) {
+        let curr = prop;
+        matches.push([curr, data[prop].delimiters.main[curr].delimiters[property]]);
+      }
 
-    // console.log(matches);
-    // console.log(typeof matches);
-    this.setState({ results: [matches] });
+      this.setState({ results: [matches] });
+    }
 
     // console.log(json.main);
     // var moveFrom = "./node_modules/cldr-misc-full/main/af/delimiters.json";
@@ -58,16 +85,37 @@ class App extends React.Component {
   }
 
   render() {
-    let searchResults;
+    let searchResults, sortResults;
     if (this.state.results.length === 0) {
-      searchResults = <div>placeholder</div>
+      searchResults = <tr></tr>
+      sortResults = <th></th>
     } else {
-      searchResults = this.state.results[0].map( (resultArr) => (
-        <Result name={resultArr[0]}
-                value={resultArr[1]}
-                key={resultArr}/>
-      ));
+      sortResults = <th onClick={this._handleSort}>Sort</th>
+      // debugger
+      if (this.state.results instanceof Array) {
+        this.state.results
+      }
+
+      // searchResults = this.state.results[0].map( (resultArr) => (
+      //   <Result name={resultArr[0]}
+      //           value={resultArr[1]}
+      //           key={resultArr}/>
+      // ));
+      debugger
+      searchResults = while (this.state.results instanceof Array) {
+
+      }
+      // this.state.results[0].map( (resultArr) => (
+      //   <Result name={resultArr[0]}
+      //           value={resultArr[1]}
+      //           key={resultArr}/>
+      // ));
     }
+
+    if (this.state.invalid) {
+      searchResults = <tr>Invalid properties. Try "quotationStart", "quotationEnd", "alternateQuotationStart", "alternateQuotationEnd"</tr>
+    };
+
     return(
       <div>
         <div className="input-container">
@@ -83,11 +131,20 @@ class App extends React.Component {
 
           </input>
         </div>
-        <div className="results-index">
-          <div>
-            {searchResults}
-          </div>
+
+        <div className="results-table">
+          <table>
+            <thead>
+              <tr>
+                {sortResults}
+              </tr>
+            </thead>
+            <tbody>
+                {searchResults}
+            </tbody>
+          </table>
         </div>
+
       </div>
     )
   }
