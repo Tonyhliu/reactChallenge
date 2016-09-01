@@ -17,19 +17,29 @@ class Result extends React.Component {
   };
 
   render() {
-    let name = this.props.name
+    let name = <li className="country-names">
+                  {this.props.name}
+                </li>
     let value;
     if (this.props.name instanceof Array) {
       name = this.props.name.map(country => {
-        return <li key={country}>{country}</li>
+        return <li key={country}
+                  className="country-names">{country}</li>
       })
     }
 
     return(
       <div>
-        <div className="result-value">
+        <div className="results">
           <div className="result-name">
-            {name} = {this.props.value}
+            <div>
+              {name}
+            </div>
+            <div>
+               <li className="result-value">
+                 = {this.props.value}
+               </li>
+             </div>
           </div>
         </div>
       </div>

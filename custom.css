@@ -5,5 +5,52 @@
 .input-search-bar {
   display: block;
   width: 400px;
-  height: 200px;
+}
+
+/*.country-names {
+  display: block;
+  float: left;
+}
+
+.result-value {
+  display: block;
+}*/
+
+.main {
+  position: absolute;
+  left: 3em;
+}
+
+.submit-button {
+  margin-top: 1em;
+}
+
+.sort-button {
+  background-color: orange; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.sort-button:hover {
+  background-color: darkorange;
+  cursor: pointer;
+}
+
+.input-container {
+}
+
+.results-table {
+  position: relative;
+  top: 2em;
+}
+
+.input-container input[type=search] {
+	padding-left: 10px;
+  margin-right: 13px;
+  width: 50%;
+	cursor: pointer;
 }

@@ -89,7 +89,8 @@ class App extends React.Component {
       searchResults = <div></div>
       sortResults = <div></div>
     } else {
-      sortResults = <div onClick={this._handleSort}>Sort</div>
+      sortResults = <div onClick={this._handleSort}
+                        className="sort-button">Sort</div>
 
       let that = this
       let countries;
@@ -107,6 +108,7 @@ class App extends React.Component {
 
     return(
       <div className="main">
+        <h2>Look up attributes from the CLDR!</h2>
         <div className="input-container">
           <input type="search"
                   placeholder="Type in a property name..."
