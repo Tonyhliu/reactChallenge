@@ -18,8 +18,8 @@ class SortResult extends React.Component {
     let name = <div></div>
     if (this.state.show) {
       name = this.props.name.map(country => {
-          return <li key={country}
-                    className="country-names">{country}</li>
+          return <div key={country}
+                    className="country-names">{country}</div>
                 });
     }
 
@@ -31,9 +31,7 @@ class SortResult extends React.Component {
     return(
         <div className="results">
           <div className="result-name">
-            <div className="">
               {value}
-            </div>
             <div>
               {name}
              </div>

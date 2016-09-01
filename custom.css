@@ -66,6 +66,14 @@
   cursor: green;
 }
 
+.results {
+  margin-right: 4em;
+}
+
+.search-results-div {
+  padding-top: 15px;
+}
+
 .input-container input[type=search] {
 	padding-left: 10px;
   margin-right: 13px;

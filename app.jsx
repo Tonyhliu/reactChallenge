@@ -63,23 +63,6 @@ class App extends React.Component {
 
       this.setState({ results: [matches], invalid: false, sort: false });
     }
-
-    // console.log(json.main);
-    // var moveFrom = "./node_modules/cldr-misc-full/main/af/delimiters.json";
-    // var test = filesystem.readFileSync(moveFrom, 'utf8')
-    // console.log(cldr);
-
-    // let results = [];
-    // filesystem.readdireSync(dir).forEach(function(file) {
-    //   results << file
-    // })
-    // return results
-
-    // fs.readFile('package', 'utf8', function() {
-    //   console.log("made it");
-    // })
-
-    // console.log(json);
   }
 
   render() {
@@ -90,7 +73,7 @@ class App extends React.Component {
       sortResults = <div></div>
     } else if (!this.state.sort) {
       sortResults = <div onClick={this._handleSort}
-                        className="sort-button">Sort</div>
+                        className="sort-button">Sort By Symbols</div>
 
       let that = this
       let countries;
@@ -100,6 +83,7 @@ class App extends React.Component {
           key={resultArr}/>
       ));
     } else if (this.state.sort) {
+
       sort = true;
       searchResults = this.state.results[0].map( (resultArr) => (
         <SortResult name={resultArr[0]}
@@ -117,7 +101,7 @@ class App extends React.Component {
         {searchResults}
       </div>
     } else {
-      values = <div>
+      values = <div className="search-results-div">
         {searchResults}
       </div>
     }
