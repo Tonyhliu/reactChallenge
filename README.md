@@ -2,7 +2,7 @@
 
 ## Instructions to Run
 
-To install, clone Repository, run 'npm-install' and then run 'npm-install-cldr-misc-full'. Lastly, run 'webpack --w' and open up index.html.
+To install, clone Repository, run 'npm install'. Lastly, run 'npm install cldr-misc-full' and open up index.html.
 
 ## Features
 
