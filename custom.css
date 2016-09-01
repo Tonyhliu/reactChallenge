@@ -29,7 +29,7 @@
 }
 
 .sort-button {
-  background-color: orange; /* Green */
+  background-color: orange;
   border: none;
   color: white;
   padding: 8px 18px;
@@ -49,6 +49,21 @@
 .results-table {
   position: relative;
   top: 2em;
+}
+
+.results-value {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.results-value:hover {
+  background-color: darkgreen;
+  cursor: green;
 }
 
 .input-container input[type=search] {

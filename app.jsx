@@ -83,7 +83,8 @@ class App extends React.Component {
   }
 
   render() {
-    let searchResults, sortResults;
+    let searchResults, sortResults, values;
+    let sort = false;
     if (this.state.results.length === 0) {
       searchResults = <div></div>
       sortResults = <div></div>
@@ -93,13 +94,13 @@ class App extends React.Component {
 
       let that = this
       let countries;
-      // debugger
       searchResults = this.state.results[0].map( (resultArr) => (
         <Result name={resultArr[0]}
           value={resultArr[1]}
           key={resultArr}/>
       ));
     } else if (this.state.sort) {
+      sort = true;
       searchResults = this.state.results[0].map( (resultArr) => (
         <SortResult name={resultArr[0]}
           value={resultArr[1]}
@@ -110,6 +111,16 @@ class App extends React.Component {
     if (this.state.invalid) {
       searchResults = <div>Invalid properties. Try "quotationStart", "quotationEnd", "alternateQuotationStart", "alternateQuotationEnd"</div>
     };
+
+    if (sort) {
+      values = <div className="search-results-ul">
+        {searchResults}
+      </div>
+    } else {
+      values = <div>
+        {searchResults}
+      </div>
+    }
 
     return(
       <div className="main">
@@ -135,9 +146,7 @@ class App extends React.Component {
                 {sortResults}
               </div>
             </div>
-            <div>
-                {searchResults}
-            </div>
+            {values}
           </div>
         </div>
 

@@ -29,10 +29,9 @@ class SortResult extends React.Component {
                   </div>
 
     return(
-      <div>
         <div className="results">
           <div className="result-name">
-            <div className="search-results-ul">
+            <div className="">
               {value}
             </div>
             <div>
@@ -40,7 +39,6 @@ class SortResult extends React.Component {
              </div>
           </div>
         </div>
-      </div>
     )
   }
 }
