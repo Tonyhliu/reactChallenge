@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Result from './result'
+import Result from './result';
+import SortResult from './sortResult';
 var data = require('multi-json?cwd=node_modules/cldr-misc-full/main&glob=**/*.json!./irrelevant.placeholder');
 
 
@@ -12,7 +13,8 @@ class App extends React.Component {
       query: "",
       results: [],
       data: data,
-      invalid: false
+      invalid: false,
+      sort: false
     };
 
     this._handleSubmit = this._handleSubmit.bind(this);
@@ -26,7 +28,6 @@ class App extends React.Component {
 
   _handleSort() {
     let arr = this.state.results[0];
-    // [[name, ""], [name, ""]]
     let obj = {}
     let matches = []
     arr.forEach(arr => {
@@ -41,7 +42,7 @@ class App extends React.Component {
       matches.push([obj[mark], mark])
     })
 
-    this.setState({ results: [matches] });
+    this.setState({ results: [matches], sort: true });
   }
 
   componentDidMount() {
@@ -49,20 +50,18 @@ class App extends React.Component {
   }
 
   _handleSubmit() {
-    // let data = this.state.data
     let validProps = ['quotationStart', 'quotationEnd', 'alternateQuotationStart', 'alternateQuotationEnd']
     let property = this.state.query
     if (!validProps.includes(property)) {
       this.setState({invalid: true});
     } else {
-      // this.setState({invalid: false});
       let matches = [];
       for (var prop in data) {
         let curr = prop;
         matches.push([curr, data[prop].delimiters.main[curr].delimiters[property]]);
       }
 
-      this.setState({ results: [matches], invalid: false });
+      this.setState({ results: [matches], invalid: false, sort: false });
     }
 
     // console.log(json.main);
@@ -88,7 +87,7 @@ class App extends React.Component {
     if (this.state.results.length === 0) {
       searchResults = <div></div>
       sortResults = <div></div>
-    } else {
+    } else if (!this.state.sort) {
       sortResults = <div onClick={this._handleSort}
                         className="sort-button">Sort</div>
 
@@ -99,6 +98,12 @@ class App extends React.Component {
         <Result name={resultArr[0]}
           value={resultArr[1]}
           key={resultArr}/>
+      ));
+    } else if (this.state.sort) {
+      searchResults = this.state.results[0].map( (resultArr) => (
+        <SortResult name={resultArr[0]}
+          value={resultArr[1]}
+          key={resultArr} />
       ));
     }
 
@@ -130,9 +135,9 @@ class App extends React.Component {
                 {sortResults}
               </div>
             </div>
-            <ul>
+            <div>
                 {searchResults}
-            </ul>
+            </div>
           </div>
         </div>
 

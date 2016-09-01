@@ -9,14 +9,17 @@ class Result extends React.Component {
     let name = <li className="country-name">
                   {this.props.name}
                 </li>
-    // let value = <li className="result-value">
-    //               {this.props.value}
-    //             </li>
+    let value = <div className="result-value">
+                  = {this.props.value}
+                </div>
     if (this.props.name instanceof Array) {
       name = this.props.name.map(country => {
         return <li key={country}
                   className="country-names">{country}</li>
       })
+      value = <div className="results-value">
+                    = {this.props.value}
+              </div>
     }
 
     return(
@@ -27,9 +30,7 @@ class Result extends React.Component {
               {name}
             </div>
             <div>
-               <li className="result-value">
-                 = {this.props.value}
-               </li>
+               {value}
              </div>
           </div>
         </div>
